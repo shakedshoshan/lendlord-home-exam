@@ -1,9 +1,22 @@
 const mongoose = require('mongoose')
 
-module.exports.init = async () => {
-  mongoose.set('useCreateIndex', true)
+mongoose.set('strictQuery', false)
 
-  await mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose?.connection?.on('connected', () => {
+  log.info('Mongoose connected')
+})
+
+mongoose?.connection?.on('disconnected', () => {
+  log.info('Mongoose disconnected')
+})
+
+mongoose?.connection?.on('error', err => {
+  log.error('Mongoose error', err)
+})
+
+module.exports.init = async () => {
+  const connString = process.env.MONGO_CONN_STRING ? process.env.MONGO_CONN_STRING : config.database
+  await mongoose.connect(connString)
 
   log.info('connected to database')
 }

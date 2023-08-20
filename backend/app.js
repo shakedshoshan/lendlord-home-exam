@@ -8,21 +8,20 @@ require('events').EventEmitter.defaultMaxListeners = 5
 require('dotenv').config({ path: `./.env.${APP_ENV}` })
 const Koa = require('koa')
 const koaCors = require('@koa/cors')
-const app = new Koa()
+const { koaBody } = require('koa-body')
 
 const model = require('./models')
 model.init()
+const server = new Koa()
 
 if (runMode === 'app') {
-  const router = require('./routes/routes')
-  const body = require('koa-body')
 
-  app.use(
-    body({
-      json: { limit: '50mb', extended: true },
+  server.use(
+    koaBody({
       includeUnparsed: true,
-      urlencoded: { limit: '50mb', extended: true },
       formLimit: '50mb',
+      jsonLimit: '50mb',
+      textLimit: '50mb',
       multipart: true,
       formidable: {
         uploadDir: './tmp',
@@ -31,7 +30,7 @@ if (runMode === 'app') {
     })
   )
 
-  app.use(
+  server.use(
     koaCors({
       methods: 'POST, GET, PUT, DELETE, OPTIONS',
       allowMethods: 'Origin, X-Requested-With, Content-Type, Accept',
@@ -39,10 +38,10 @@ if (runMode === 'app') {
     })
   )
 
-  app.use(router.routes())
+  require('./routes')(server)
 }
 
 const port = config.ports[runMode]
 
 log.info(`started in ${APP_ENV} env, listening to port ${port}`)
-app.listen(port)
+server.listen(port)

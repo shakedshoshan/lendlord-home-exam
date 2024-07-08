@@ -21,7 +21,7 @@ global.log = bunyan.createLogger({
 
 var config = {
   default: {
-    database: 'mongodb://localhost:27017/lendlord_home_exam',
+    database: '',
     appUrl: 'http://localhost:3002',
     ports: {
       app: 3000

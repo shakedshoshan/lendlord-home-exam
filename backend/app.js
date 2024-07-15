@@ -30,12 +30,21 @@ if (runMode === 'app') {
     })
   )
 
+  // server.use(
+  //   koaCors({
+  //     methods: 'POST, GET, PUT, DELETE, OPTIONS',
+  //     allowMethods: 'Origin, X-Requested-With, Content-Type, Accept',
+  //     credentials: true,
+  //     origin: '*'
+  //   })
+  // )
+
   server.use(
     koaCors({
-      methods: 'POST, GET, PUT, DELETE, OPTIONS',
-      allowMethods: 'Origin, X-Requested-With, Content-Type, Accept',
+      origin: 'http://localhost:3001', // Specify your frontend origin
+      allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
       credentials: true,
-      origin: '*'
     })
   )
 

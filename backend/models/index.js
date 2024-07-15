@@ -15,7 +15,7 @@ mongoose?.connection?.on('error', err => {
 })
 
 module.exports.init = async () => {
-  const connString = process.env.MONGO_CONN_STRING ? process.env.MONGO_CONN_STRING : config.database
+  const connString = process.env.MONGO_KEY ? process.env.MONGO_KEY : config.database
   await mongoose.connect(connString)
 
   log.info('connected to database')

@@ -14,3 +14,91 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.table {
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+.table table {
+  border: 1px solid #ddd; 
+  margin: 0 auto; 
+}
+
+.table thead th {
+  padding: 10px 40px;
+  background-color: #8ebe9e; 
+  text-align: left; 
+  border: 1px solid #798ca7; 
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #ddd; 
+}
+
+.table tbody td {
+  padding: 10px 15px; 
+  text-align: left; 
+}
+
+.newUserModal {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  /* border: 1px solid #ddd; */
+  /* border-radius: 5px; */
+}
+
+.newUserModal label {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.newUserModal input,
+.newUserModal button {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.newUserModal button {
+  background-color: #8788d1; /* Green */
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.newUserModal button:hover {
+  background-color: #6566cc; /* Green */
+}
+
+.button {
+  /* Base styles for the button */
+  background-color: #1a9b45; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  /* Styles applied on hover */
+  background-color: #2b974f; /* Darker green on hover */
+  opacity: 0.8; /* Slightly transparent on hover */
+}
+
+.action {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
